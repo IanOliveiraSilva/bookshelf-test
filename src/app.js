@@ -27,12 +27,10 @@ app.use(cors());
 
 // Rotas
 const index = require("./route/index");
-const booksRoute = require("./route/books.routes");
 const bookRoute = require("./route/book.routes");
 
 // Middleware para o uso das rotas
 app.use(index);
-app.use("/api", booksRoute);
 app.use("/api", bookRoute);
 
 

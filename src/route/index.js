@@ -39,13 +39,15 @@ router.get('/bookshelf', async (req, res) => {
   let page = req.query.page || '1';
   let sort = req.query.sort;
   let pageSize = req.query.pagesize || 50;
-  
+
   const url = `http://localhost:3333/api/book/?pageSize=${pageSize}&page=${page}&sort=${sort}`;
   
   const response = await fetch(url);
   const data = await response.json();
 
-  let totalPages = Math.ceil(data.Quantidade[0].count / pageSize);
+  const quantidadeLivros = data.Quantidade[0].count || 0;
+
+  let totalPages = Math.ceil(quantidadeLivros/ pageSize);
 
   res.render('bookshelf', {books: data, page: page, totalPages:totalPages}) 
 });

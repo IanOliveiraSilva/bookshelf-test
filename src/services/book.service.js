@@ -1,6 +1,9 @@
 const { BooksRepository } = require("../repositories/book.repository");
 const bookRepository = new BooksRepository();
 
+const axios = require('axios');
+
+
 class Booksservices {
     async addBook({
         name,
@@ -72,6 +75,61 @@ class Booksservices {
 
         return {
             message: "Livro deletado com sucesso"
+        }
+    }
+
+    // GOOGLE API CALLS
+
+    async getBookById({ id }) {
+        const googleBooksResponse = await axios.get(`https://www.googleapis.com/books/v1/volumes/${id}`);
+
+        if (googleBooksResponse.status === 200) {
+            const book = googleBooksResponse.data.volumeInfo;
+            const bookData = {
+                title: book.title,
+                authors: book.authors,
+                publisher: book.publisher,
+                publishedDate: book.publishedDate,
+                description: book.description,
+                pageCount: book.pageCount,
+                categories: book.categories,
+                image: book.imageLinks?.thumbnail,
+                previewLink: book.previewLink,
+                id: googleBooksResponse.data.id,
+                infoLink: book.infoLink,
+                language: book.language
+            };
+            return {
+                body: {
+                    bookData
+                },
+            };
+        } else {
+            throw new Error("Nenhum livro encontrado com o ID fornecido.");
+        }
+    }
+
+    async getBooksByTitle({ title }) {
+
+        const googleBooksResponse = await axios.get(`https://www.googleapis.com/books/v1/volumes`, { params: { q: title } });
+
+        if (googleBooksResponse.status === 200) {
+            const books = googleBooksResponse.data.items.map(item => {
+                const volumeInfo = item.volumeInfo;
+                return {
+                    title: volumeInfo.title,
+                    publisher: volumeInfo.publisher,
+                    publishedYear: volumeInfo.publishedDate ? volumeInfo.publishedDate.substring(0, 4) : "N/A",
+                    id: item.id,
+                    image: volumeInfo.imageLinks?.thumbnail,
+                };
+            });
+
+            return {
+                body: {
+                    books
+                }
+            };
         }
     }
 }

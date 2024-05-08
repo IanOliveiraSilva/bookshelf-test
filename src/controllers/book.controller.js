@@ -56,7 +56,6 @@ exports.addBook = async (req, res, next) => {
   }
 };
 
-
 exports.addBookFromAPI = async (req, res, next) => {
   try {
     const { name, description, author, year, image, publisher } = req.body;
@@ -135,6 +134,28 @@ exports.deleteBook = async (req, res, next) => {
     const response = await bookservice.deleteBook({ id });
 
    
+    return res.status(200).json(response);
+  } catch (error) {
+    next(error);
+  }
+};
+
+// GOOGLE API CALLS
+
+exports.getBookById = async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    const response = await bookservice.getBookById({ id });
+    return res.status(200).json(response);
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.getBooksByTitle = async (req, res, next) => {
+  try {
+    const title = req.params.title;
+    const response = await bookservice.getBooksByTitle({ title });
     return res.status(200).json(response);
   } catch (error) {
     next(error);
