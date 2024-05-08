@@ -66,7 +66,10 @@ class Booksservices {
         
         const newBook = await bookRepository.updateBook(updatedBook, id);
 
-        return newBook
+        return {
+            message: "Livro atulizado com sucesso",
+            book: newBook
+        }
     }
 
     async deleteBook({ id }){
