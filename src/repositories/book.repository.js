@@ -15,7 +15,9 @@ class BooksRepository {
     );
 
     if (existingBook) {
-      return 'Este livro já está no banco de dados.';
+      return {
+        message: "Esse livro já está no banco de dados"
+      };;
     }
 
     const { rows: [book], } = await db.query(
@@ -33,9 +35,9 @@ class BooksRepository {
     );
 
     return {
-      message: "Livro adicionado com sucesso", 
+      message: "Livro adicionado com sucesso",
       book: book
-  };
+    };
   }
 
   async getBooks({ sort, page, pageSize }) {
