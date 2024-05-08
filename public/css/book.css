@@ -1,0 +1,132 @@
+body{
+    color: rgb(255, 255, 255);
+}
+a{
+    text-decoration: none;
+    color: aliceblue;
+}
+.text-slug {
+    background: #283038;
+    border-radius: 3px;
+    box-shadow: inset 0 1px 0 hsla(0,0%,100%,.05);
+    color: rgb(211, 211, 211);
+    display: inline-block;
+    line-height: 1.2;
+    padding: 2px 4px;
+    white-space: nowrap;
+}
+
+.text-sluglist .text-slug {
+    box-sizing: border-box;
+    margin-bottom: 1px;
+    margin-right: 5px;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.cast-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.back-home {
+    display: block;
+    margin-top: 30px;
+    text-decoration: none;
+    color: #000000;
+    font-weight: bold;
+}
+
+.column-block {
+    display: flex;
+    text-align: center;
+    margin-left: 10px;
+}
+
+.headline-1{
+    font-size: 2.46153846rem;
+    font-weight: 400;
+    margin: 0 0 10px;
+    color: #fff;
+    line-height: 1.2;
+    overflow-wrap: break-word;
+    display: inline;
+}
+
+.column-block h3 {
+    border-bottom: 1px dotted #456;
+    clear: left;
+    float: left;
+    font-size: 1rem;
+    margin-top: 2px;
+    width: 12em;
+    text-align: center;
+}
+
+.character {
+    color: #80ced7;
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: .075em;
+    line-height: 1.1;
+    padding: 1px .2em 0 0;
+    position: relative;
+    text-transform: uppercase;
+    top: 3px;
+}
+
+.poster {
+    border: 2px solid #128c7e;
+    border-radius: 5px;
+}
+.poster:hover{
+    transform: scale(1.1);
+}
+
+.text-slug-crew {
+    border-radius: 3px;
+    box-shadow: inset 0 1px 0 hsla(0,0%,100%,.05);
+    color: rgb(255, 255, 255);
+    display: inline-block;
+    line-height: 1.5;
+    padding: 3px 6px;
+    font-size: 15px;
+    white-space: nowrap;
+}
+
+.inline{
+    display: inline;
+}
+
+.movie-details {
+    margin-left: -15px;
+    margin-top: 100px;
+}
+
+.hr{
+    color: white;
+    background-color: white;
+}
+
+.hidden {
+    display: none;
+}
+
+.center {
+    display: block;
+    margin-left: 430px;
+}
+
+.star {
+    font-size: 2.5em;
+    cursor: pointer;
+    color: #18beab;
+    text-shadow: 0 0 10px #0a4b43;
+    transition: color 0.3s, text-shadow 0.3s;
+    width: 110px;
+
+}
+
+.game-actions{
+    margin-left: 25px;
+}

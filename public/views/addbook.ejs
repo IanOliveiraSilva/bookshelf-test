@@ -1,0 +1,30 @@
+<%- include('partials/header', {pageTitle: 'Virtual Library' }) %>
+
+    <link rel="stylesheet" href="../css/addBook.css">
+
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <form id="add-book-form">
+                    <label for="name">Name:</label><br>
+                    <input type="text" id="name" name="name"><br>
+                    <label for="description">Description:</label><br>
+                    <input type="text" id="description" name="description"><br>
+                    <label for="author">Author:</label><br>
+                    <input type="text" id="author" name="author"><br>
+                    <label for="year">Year:</label><br>
+                    <input type="text" id="year" name="year"><br>
+                    <label for="publisher">Publisher:</label><br>
+                    <input type="text" id="publisher" name="publisher"><br>
+                    <label for="image"><i class="fa fa-upload"></i></label><br>
+                    <input type="file" id="image" name="image">
+                    <span id="file-name"></span><br>
+
+
+                    <input type="submit" value="Submit">
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/addBook.js"></script>

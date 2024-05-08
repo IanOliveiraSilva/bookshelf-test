@@ -1,0 +1,55 @@
+body{
+    color: #18beab;
+}
+
+label {
+    font-weight: bold;
+    color: #18beab;
+    margin-top: 10px;
+}
+
+input[type="text"],
+input[type="file"] {
+    background-color: #0a4b43;
+    color: #18beab;
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: none;
+    border-radius: 5px;
+}
+
+input[type="submit"] {
+    background-color: #18beab;
+    color: #0a4b43;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #0a4b43;
+    color: #18beab;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+label[for="image"] {
+
+    background-color: #18beab;
+    color: #0a4b43;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+label[for="image"]:hover {
+    background-color: #0a4b43;
+    color: #18beab;
+}

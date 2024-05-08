@@ -1,0 +1,219 @@
+body {
+    background-color: #101b1d;
+    font-family: TiemposHeadlineWeb-Bold, Georgia, serif;
+}
+
+header {
+    line-height: 1.6;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100px;
+    margin-bottom: auto;
+    transition: all 0.5s ease;
+    border-radius: 0 0 10px 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.container {
+    flex: 1;
+    text-align: center;
+}
+
+.logo {
+    height: 60px;
+    width: auto;
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.1);
+}
+
+nav li,
+nav a {
+    text-decoration: none;
+    margin-right: 20px;
+    font-size: 17px;
+    color: #ffffff;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    white-space: nowrap;
+}
+
+
+nav li:hover {
+    transform: scale(1.05);
+    text-shadow: 0 0 8px rgba(0, 0, 0, 0.7);
+}
+
+h1 {
+    color: #ffffff;
+    font-size: 2.46153846rem;
+    font-weight: 400;
+    margin: 0 0 10px;
+}
+
+
+/* Input and Button */
+input,
+button {
+    border-radius: 20px;
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    transition: all 0.3s ease;
+}
+
+input[type="text"] {
+    border: 2px solid #263d42;
+}
+
+input[type="text"]:focus {
+    border-color: #128c7e;
+    outline: none;
+}
+
+button {
+    background-color: #128c7e;
+    color: #fff;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0f6f61;
+}
+
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.7);
+    background-color: #0f6f61;
+    color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 1);
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+    font-weight: 800;
+    z-index: -10000;
+}
+
+.popup.active {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+    z-index: 10000;
+}
+
+.popup-content {
+    position: relative;
+}
+
+.logout-message {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.logout-options {
+    display: flex;
+    justify-content: center;
+}
+
+.logout-options button {
+    background-color: #fff;
+    color: #000000;
+    border: none;
+    padding: 10px 20px;
+    margin: 0 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 800;
+    transition: background-color 0.3s ease;
+}
+
+.logout-options button:hover {
+    background-color: #eee;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+#login-form,
+#register-form {
+    display: none;
+    position: fixed;
+    background-color: #0f6f61;
+    color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 1);
+    margin-top: -55px;
+    z-index: 9999;
+}
+
+.close-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    color: #ffffff;
+    font-size: 18px;
+}
+
+.form-control {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #000000;
+    border-radius: 4px;
+    width: calc(100% - 20px);
+    box-sizing: border-box;
+}
+
+#login-form input {
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1.5px solid #000000;
+    border-radius: 4px;
+}
+
+#login-form button,
+#register-form button {
+    width: 100%;
+    padding: 10px;
+    color: rgb(0, 0, 0);
+    background-color: #ffffff;
+
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#login-form button:hover,
+#register-form button:hover {
+    color: rgb(255, 255, 255);
+    background-color: #000000;
+}
+
+.margin-bot{
+    margin-top: 4px;
+    font-size: 20px;
+}

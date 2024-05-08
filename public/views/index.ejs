@@ -1,0 +1,23 @@
+<%- include('partials/header', {pageTitle: 'Virtual Library' }) %>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="../css/index.css">
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h1 class="text-center mb-5">Bem-vindo ao Storyteller!</h1>
+
+            <form id="search-form" class="search-form">
+                <div class="input-group mb-3">
+                    <input type="text" id="book-title" name="title" class="form-control" placeholder="Digite o título do livro que deseja buscar" aria-label="Digite o título do livro" aria-describedby="button-search">
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="row justify-content-center mt-5" id="search-results"></div>
+</div>
+
+<%- include('partials/footer') %>
+<script src="../js/index.js"></script>

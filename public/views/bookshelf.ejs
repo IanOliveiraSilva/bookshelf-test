@@ -1,0 +1,58 @@
+<%- include('partials/header', {pageTitle: 'Virtual Library' }) %>
+
+    <link rel="stylesheet" href="../css/bookshelf.css">
+    <link rel="stylesheet" href="../css/sortOptions.css">
+
+    <div class="container py-5">
+        <select id="sortOptions">
+            <option>Ordenar Livros</option>
+            <option value="year_asc">Mais Antigos</option>
+            <option value="year_desc">Mais Novos</option>
+            <option value="publisher">Editora</option>
+            <option value="author">Autor</option>
+            <option value="title_desc">A - Z</option>
+            <option value="title_asc">Z - A</option>
+        </select>
+        &emsp;
+
+        <hr>
+        <p class="book-count">
+            <%= books.Quantidade[0].count %>
+        </p>
+        <div class="row justify-content-center mt-5">
+            <ul class="book-list list-unstyled d-flex flex-wrap">
+                <% books.Livros.forEach((book, index)=> { %>
+                    <li class="book-item p-2" style="margin: 10px;" id="book-<%= index %>">
+                        <a style="text-decoration: none;" href="/addedBook/<%= book.id %>">
+                            <img class="book-image poster img-fluid" src="<%= book.image %>" alt="Livro <%= book.id %>">
+                            <div class="book-title">
+                                <p><%= book.name %> (<%= book.year %>)</p>
+                            </div>
+                            
+                        </a>
+                        
+                    </li>
+                <% }); %>
+            </ul>
+        </div>
+        <ul class="pagination justify-content-center">
+            <% for(let i=1; i <=totalPages; i++) { %>
+                <li class="page-item <%= i == page ? 'active' : '' %>">
+                    <a class="page-link" href="/bookshelf?page=<%= i %>">
+                        <%= i %>
+                    </a>
+                </li>
+                <% } %>
+        </ul>
+    
+    
+        
+    </div>
+
+
+
+
+    <script src="../js/bookshelf.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">

@@ -1,0 +1,89 @@
+<%- include('partials/header', {pageTitle: 'Virtual Library' }) %>
+
+    <link rel="stylesheet" href="../css/book.css">
+
+    <main>
+        <div class="container">
+            <% if (bookData) { %>
+                <div class="movie-details">
+                    <div class="row g-0 align-items-center margin-top">
+                        <div class="col-md-4">
+                            <a target="_blank" href="<%= bookData.previewLink %>">
+                                <img id="book-image" src="<%= bookData.image %>" alt="Capa do Livro" class="poster">
+                            </a>
+
+                            <h3 id="book-title" class="card-title">
+                                <%= bookData.title %>
+                            </h3>
+
+                            <p id="book-date" class="text-muted inline">
+                                <%= bookData.publishedDate %>
+                            </p>
+
+                            <p id="book-author" class="card-text"><%= bookData.authors.join(', ') %></p>
+
+                        <div class="game-actions">
+                            <button id="add-favorite-button" class="btn-unstyled" data-book-id="<%= bookData.id %>">
+                                Adicionar a estante</button>&emsp;
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-8">
+                        <div>
+                            <p id="book-description"><%= bookData.description %></p>
+                            <br><br>
+                            <div class="column-block">
+                                <div id="castList" class="">
+                                    <h4>Genres</h4>
+                                    <h3>
+                                        <span class="character align-items-center text-sluglist">
+                                            &emsp;<%= bookData.categories.join(' , ') %>
+                                        </span>
+                                    </h3>
+                                </div>
+                            
+                                <div id="castList" class="">
+                                    <h4>Language</h4>
+                                    <h3>
+                                        <span class="character align-items-center text-sluglist">
+                                            &emsp;<%= bookData.language %>
+                                        </span>
+                                    </h3>
+                                </div>
+                            
+                                <div id="castList" class="">
+                                    <h4>Publisher</h4>
+                                    <h3>
+                                        <span id="book-publisher" class="character align-items-center text-sluglist">
+                                            &emsp;<%= bookData.publisher %>
+                                        </span>
+                                    </h3>
+                                </div>
+                            
+                                <div id="castList" class="">
+                                    <h4>Page Count</h4>
+                                    <h3>
+                                        <span class="character align-items-center text-sluglist">
+                                            &emsp;<%= bookData.pageCount %>
+                                        </span>
+                                    </h3>
+                                </div>
+                                
+                            </div>
+                            <a href="/" class="back-link text-center">
+                                <i class="fa-solid fa-house" style="margin-left: 50px; color: #ffffff; font-size: 30px;">
+                                </i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <% } %>
+        </div>
+        
+
+        
+    </main>
+
+    
+    <script src="../js/book.js"></script>
