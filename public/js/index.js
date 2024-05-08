@@ -2,7 +2,7 @@ const searchForm = document.getElementById('search-form');
 const searchInput = document.getElementById('book-title');
 let searchResults = document.getElementById('search-results');
 
-const API_URL = 'https://localhost:3333/api/books/';
+const API_URL = 'http://localhost:3333/api/book/title/';
 
 async function fetchBooks(title) {
     const response = await fetch(`${API_URL}${encodeURIComponent(title)}`);

@@ -15,7 +15,7 @@ router.get('/addBook', (req, res) => {
 
 router.get('/book/:id', async (req, res) => {
   const id = req.params.id;
-  const response = await fetch(`https://localhost:3333/api/book/${id}`);
+  const response = await fetch(`http://localhost:3333/api/book/id/${id}`);
   const data = await response.json();
   const bookData = data.body.bookData;
 
@@ -24,7 +24,7 @@ router.get('/book/:id', async (req, res) => {
 
 router.get('/addedbook/:id', async (req, res) => {
   const id = req.params.id;
-  const response = await fetch(`https://localhost:3333/api/addedBook/${id}`);
+  const response = await fetch(`http://localhost:3333/api/addedBook/${id}`);
   
   const data = await response.json();
   

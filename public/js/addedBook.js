@@ -1,7 +1,7 @@
 document.getElementById('delete-book-button').addEventListener('click', async () => {
     const bookId = document.getElementById("delete-book-button").dataset.bookId;
     try {
-        const response = await fetch(`http://localhost:3333/api/book/${encodeURIComponent(bookId)}`, {
+        const response = await fetch(`http://localhost:3333/api/book/id/${encodeURIComponent(bookId)}`, {
             method: 'DELETE'
         });
 
