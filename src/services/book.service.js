@@ -21,10 +21,7 @@ class Booksservices {
             publisher,
             image
         });
-        return {
-            message: "Livro adicionado com sucesso", 
-            book: book
-        };
+        return book
 
     }
 

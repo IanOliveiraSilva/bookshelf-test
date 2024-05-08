@@ -32,7 +32,10 @@ class BooksRepository {
       ]
     );
 
-    return book;
+    return {
+      message: "Livro adicionado com sucesso", 
+      book: book
+  };
   }
 
   async getBooks({ sort, page, pageSize }) {
