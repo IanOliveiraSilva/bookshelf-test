@@ -54,3 +54,7 @@ label[for="image"]:hover {
     background-color: #0a4b43;
     color: #18beab;
 }
+
+small{
+    color: red;
+}
