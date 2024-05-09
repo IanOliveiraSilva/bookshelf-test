@@ -6,8 +6,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     author: document.getElementById("book-author").textContent.trim(),
     year: document.getElementById("book-date").textContent.trim(),
     image: document.getElementById("book-image").src.trim(),
-    publisher: document.getElementById("book-publisher").textContent.trim()
-
+    publisher: document.getElementById("book-publisher").textContent.trim(),
+    genre: document.getElementById("book-genre").textContent.trim(),
+    pagecount: parseInt(document.getElementById("book-pagecount").textContent.trim()),
+    lang: document.getElementById("book-lang").textContent.trim(),
   };
 
   document.getElementById("add-favorite-button").addEventListener('click', async () => {
@@ -23,7 +25,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         author: bookData.author,
         year: parseInt(bookData.year),
         image: bookData.image,
-        publisher: bookData.publisher
+        publisher: bookData.publisher,
+        genre: bookData.genre,
+        pagecount: bookData.pagecount,
+        lang: bookData.lang
       })
     });
 

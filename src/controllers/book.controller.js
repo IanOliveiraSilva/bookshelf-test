@@ -44,7 +44,7 @@ async function uploadFile(req) {
 
 exports.addBook = async (req, res, next) => {
   try {
-    const { name, description, author, year, publisher } = req.body;
+    const { name, description, author, year, publisher, genre, pagecount, lang } = req.body;
     const image = await uploadFile(req);
 
     try {
@@ -54,7 +54,10 @@ exports.addBook = async (req, res, next) => {
         author,
         year,
         image,
-        publisher
+        publisher,
+        genre,
+        pagecount,
+        lang
       });
 
       res.status(SUCCESS_STATUS).json(response);
@@ -73,7 +76,7 @@ exports.addBook = async (req, res, next) => {
 
 exports.addBookFromAPI = async (req, res, next) => {
   try {
-    const { name, description, author, year, image, publisher } = req.body;
+    const { name, description, author, year, image, publisher, genre, pagecount, lang } = req.body;
 
     const response = await bookservice.addBook({
       name,
@@ -81,7 +84,10 @@ exports.addBookFromAPI = async (req, res, next) => {
       author,
       year,
       image,
-      publisher
+      publisher,
+      genre,
+      pagecount,
+      lang
     });
 
     res.status(200).json(response);

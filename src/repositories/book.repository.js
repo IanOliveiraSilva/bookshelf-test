@@ -7,7 +7,10 @@ class BooksRepository {
     author,
     year,
     publisher,
-    image
+    image,
+    genre,
+    pagecount,
+    lang
   }) {
     const { rows: [existingBook], } = await db.query(
       `SELECT * FROM books WHERE name = $1 AND author = $2 AND publisher = $3`,
@@ -19,8 +22,8 @@ class BooksRepository {
     }
 
     const { rows: [book], } = await db.query(
-      `INSERT INTO books( name, description, author, year, publisher, image) 
-        VALUES ($1, $2, $3, $4, $5, $6) 
+      `INSERT INTO books( name, description, author, year, publisher, image, genre, pagecount, lang) 
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) 
         RETURNING *`,
       [
         name,
@@ -28,7 +31,10 @@ class BooksRepository {
         author,
         year,
         publisher,
-        image
+        image,
+        genre,
+        pagecount,
+        lang
       ]
     );
 

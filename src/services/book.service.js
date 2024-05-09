@@ -11,7 +11,10 @@ class Booksservices {
         author,
         year,
         publisher,
-        image
+        image,
+        genre,
+        pagecount,
+        lang
     }) {
         const book = await bookRepository.addBook({
             name,
@@ -19,7 +22,10 @@ class Booksservices {
             author,
             year,
             publisher,
-            image
+            image,
+            genre,
+            pagecount,
+            lang
         });
         return book
 
