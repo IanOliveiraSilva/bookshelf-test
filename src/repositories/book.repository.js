@@ -15,9 +15,7 @@ class BooksRepository {
     );
 
     if (existingBook) {
-      return {
-        message: "Esse livro já está no banco de dados"
-      };;
+      throw new Error("Esse livro já está no banco de dados");
     }
 
     const { rows: [book], } = await db.query(

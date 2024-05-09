@@ -18,40 +18,55 @@ const bucket = admin.storage().bucket();
 
 exports.upload = upload;
 
+const FILE_UPLOAD_ERROR = 'File upload error';
+const BOOK_EXISTS_ERROR = 'Esse livro já está no banco de dados';
+const SUCCESS_STATUS = 200;
+const ERROR_STATUS = 400;
+
+async function uploadFile(req) {
+  const fileName = uuidv4() + req.file.originalname;
+  const file = bucket.file(fileName);
+  const blobStream = file.createWriteStream({
+    metadata: {
+      contentType: req.file.mimetype
+    }
+  });
+
+  return new Promise((resolve, reject) => {
+    blobStream.on('error', reject);
+    blobStream.on('finish', () => {
+      const publicUrl = `https://firebasestorage.googleapis.com/v0/b/${bucket.name}/o/${encodeURI(file.name)}?alt=media`;
+      resolve(publicUrl);
+    });
+    blobStream.end(req.file.buffer);
+  });
+}
+
 exports.addBook = async (req, res, next) => {
   try {
     const { name, description, author, year, publisher } = req.body;
+    const image = await uploadFile(req);
 
-    const fileName = uuidv4() + req.file.originalname;
-
-    const file = bucket.file(fileName);
-
-    const blobStream = file.createWriteStream({
-      metadata: {
-        contentType: req.file.mimetype
-      }
-    });
-
-    blobStream.on('error', (err) => next(err));
-
-    blobStream.on('finish', async () => {
-      const publicUrl = `https://firebasestorage.googleapis.com/v0/b/${bucket.name}/o/${encodeURI(file.name)}?alt=media`;
-
+    try {
       const response = await bookservice.addBook({
         name,
         description,
         author,
         year,
-        image: publicUrl,
+        image,
         publisher
       });
 
-      res.status(200).json(response);
-    });
-
-    blobStream.end(req.file.buffer);
-
+      res.status(SUCCESS_STATUS).json(response);
+    } catch (error) {
+      if (error.message === BOOK_EXISTS_ERROR) {
+        res.status(ERROR_STATUS).json({ message: error.message });
+      } else {
+        next(error);
+      }
+    }
   } catch (error) {
+    error.message = FILE_UPLOAD_ERROR;
     next(error);
   }
 };
@@ -110,7 +125,7 @@ exports.updateBook = async (req, res, next) => {
     } = req.body;
 
     const id = req.params.id;
-    
+
     const response = await bookservice.updateBook({
       name,
       description,
@@ -120,7 +135,7 @@ exports.updateBook = async (req, res, next) => {
       id
     });
 
-   
+
     return res.status(200).json(response);
   } catch (error) {
     next(error);
@@ -130,10 +145,10 @@ exports.updateBook = async (req, res, next) => {
 exports.deleteBook = async (req, res, next) => {
   try {
     const id = req.params.id;
-    
+
     const response = await bookservice.deleteBook({ id });
 
-   
+
     return res.status(200).json(response);
   } catch (error) {
     next(error);

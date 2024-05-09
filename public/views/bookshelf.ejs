@@ -25,6 +25,7 @@
                     <li class="book-item p-2" style="margin: 10px;" id="book-<%= index %>">
                         <a style="text-decoration: none;" href="/addedBook/<%= book.id %>">
                             <img class="book-image poster img-fluid" src="<%= book.image %>" alt="Livro <%= book.id %>">
+                            <hr>
                             <div class="book-title">
                                 <p><%= book.name %> (<%= book.year %>)</p>
                             </div>
@@ -44,9 +45,6 @@
                 </li>
                 <% } %>
         </ul>
-    
-    
-        
     </div>
 
 

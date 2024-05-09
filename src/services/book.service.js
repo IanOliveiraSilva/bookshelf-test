@@ -28,7 +28,7 @@ class Booksservices {
     async getBooks({ sort, page, pageSize }) {
         const books = await bookRepository.getBooks({ sort, page, pageSize });
         const bookCount = await bookRepository.getBooksCount({});
-    
+
         return {
             Livros: books,
             Quantidade: bookCount
@@ -60,7 +60,7 @@ class Booksservices {
             publisher: publisher !== undefined ? publisher : book.rows[0].publisher,
         };
 
-        
+
         const newBook = await bookRepository.updateBook(updatedBook, id);
 
         return {
@@ -69,9 +69,9 @@ class Booksservices {
         }
     }
 
-    async deleteBook({ id }){
+    async deleteBook({ id }) {
         const book = await bookRepository.deleteBook({ id });
-        
+
 
         return {
             message: "Livro deletado com sucesso"
