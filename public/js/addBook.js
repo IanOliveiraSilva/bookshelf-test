@@ -15,6 +15,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         formData.append('author', document.getElementById('author').value);
         formData.append('year', document.getElementById('year').value);
         formData.append('publisher', document.getElementById('publisher').value);
+        formData.append('genre', document.getElementById('genre').value);
+        formData.append('pagecount', document.getElementById('pagecount').value);
+        formData.append('lang', document.getElementById('lang').value);
         formData.append('image', document.getElementById('image').files[0]);
     
         submitButton.disabled = true;
