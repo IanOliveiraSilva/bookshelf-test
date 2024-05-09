@@ -10,7 +10,8 @@ label {
 
 input[type="text"],
 input[type="file"],
-input[type="number"] {
+input[type="number"],
+select {
     background-color: #0a4b43;
     color: #18beab;
     width: 100%;

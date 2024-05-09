@@ -28,12 +28,24 @@
                     <input type="text" id="pagecount" name="pagecount" required><br>
 
                     <label for="lang">Language:</label><br>
-                    <input type="text" id="lang" name="lang" required><br>
+                    <select id="lang" name="lang" required>
+                        <option value="">Selecione um idioma...</option>
+                        <option value="PT-BR">Português</option>
+                        <option value="EN-US">Inglês</option>
+                        <option value="ES-ES">Espanhol</option>
+                        <option value="FR-FR">Francês</option>
+                        <option value="DE-DE">Alemão</option>
+                        <option value="IT-IT">Italiano</option>
+                        <option value="JA-JP">Japonês</option>
+                        <option value="KO-KR">Coreano</option>
+                        <option value="ZH-CN">Chinês</option>
+                    </select><br>
+
+
 
                     <label for="image"><i class="fa fa-upload"></i></label><br>
                     <input type="file" id="image" name="image">
                     <span id="file-name"></span><br>
-
 
                     <input id="submit-button" type="submit" value="Submit">
                 </form>
