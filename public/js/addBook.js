@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         formData.append('pagecount', document.getElementById('pagecount').value);
         formData.append('lang', document.getElementById('lang').value);
         formData.append('image', document.getElementById('image').files[0]);
+        formData.append('collection_name', document.getElementById('collection_name').value)
     
         submitButton.disabled = true;
 

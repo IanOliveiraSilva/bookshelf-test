@@ -16,13 +16,6 @@ class BooksRepository {
     await db.query(`UPDATE collection SET volumecount = volumecount + 1 WHERE id = $1`, [collection_id]);
   }
 
-  async getExistingBook({ name, author, publisher }) {
-    const { rows: [existingBook], } = await db.query(
-      `SELECT * FROM books WHERE name = $1 AND author = $2 AND publisher = $3`,
-      [name, author, publisher]
-    );
-  }
-
   async addBook({
     name,
     description,
@@ -91,6 +84,32 @@ class BooksRepository {
 
 
     return books.rows;
+  }
+  
+  async getBooksByCollectionName({ collection_name }){
+    const books = await db.query(
+      `SELECT books.name as title, books.id as book_id, books.author
+      FROM books
+      INNER JOIN collection 
+      ON books.collection_id = collection.id
+      WHERE collection.name = $1
+      `,
+      [collection_name]
+    )
+
+    return books
+  }
+
+  async getCollectionByName({ collection_name }){
+    const collection = await db.query(
+      `SELECT collection.name, collection.id, collection.volumecount
+      FROM collection
+      WHERE collection.name = $1
+      `,
+      [collection_name]
+    )
+
+    return collection
   }
 
   async getAddedBookById({ id }) {

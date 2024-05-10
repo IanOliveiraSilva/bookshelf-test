@@ -31,6 +31,11 @@ router.get(
     bookController.getAddedBookById
 )
 
+router.get(
+    "/books/:collection_name",
+    bookController.getBooksByCollectionName
+)
+
 router.patch(
     "/book/:id",
     bookController.updateBook

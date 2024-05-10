@@ -121,6 +121,18 @@ exports.getAddedBookById = async (req, res, next) => {
   }
 }
 
+exports.getBooksByCollectionName = async (req, res, next) => {
+  try {
+    const collection_name = req.params.collection_name;
+
+    const response = await bookservice.getBooksByCollectionName({ collection_name })
+
+    res.status(200).json(response)
+  } catch (error) {
+    next(error)
+  }
+}
+
 exports.updateBook = async (req, res, next) => {
   try {
     const {
