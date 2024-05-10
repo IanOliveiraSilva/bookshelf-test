@@ -4,7 +4,6 @@ const bookRepository = new BooksRepository();
 const axios = require('axios');
 
 class Booksservices {
- 
     async addBook({
         name,
         description,
@@ -28,6 +27,7 @@ class Booksservices {
             }
 
             collection_id = collection[0].id;
+            await bookRepository.incrementVolumeCountCollection({ collection_id });
         }
 
         const book = await bookRepository.addBook({

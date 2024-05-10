@@ -8,8 +8,12 @@ class BooksRepository {
   }
 
   async addCollection({ collection_name }) {
-    const { rows: [collection], } = await db.query(`INSERT INTO collection(name) VALUES($1) RETURNING *`, [collection_name])
+    const { rows: [collection], } = await db.query(`INSERT INTO collection(name, volumecount) VALUES($1, $2) RETURNING *`, [collection_name, 0])
     return collection;
+  }
+
+  async incrementVolumeCountCollection({ collection_id }) {
+    await db.query(`UPDATE collection SET volumecount = volumecount + 1 WHERE id = $1`, [collection_id]);
   }
 
   async getExistingBook({ name, author, publisher }) {
