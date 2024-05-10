@@ -77,7 +77,7 @@ exports.addBook = async (req, res, next) => {
 
 exports.addBookFromAPI = async (req, res, next) => {
   try {
-    const { name, description, author, year, image, publisher, genre, pagecount, lang } = req.body;
+    const { name, description, author, year, image, publisher, genre, pagecount, lang, collection_name } = req.body;
 
     const response = await bookservice.addBook({
       name,
@@ -88,7 +88,8 @@ exports.addBookFromAPI = async (req, res, next) => {
       publisher,
       genre,
       pagecount,
-      lang
+      lang,
+      collection_name
     });
 
     res.status(200).json(response);

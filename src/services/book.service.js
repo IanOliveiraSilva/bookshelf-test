@@ -20,13 +20,12 @@ class Booksservices {
 
         if (collection_name) {
             let collection = await bookRepository.getCollectionByName({ collection_name })
-            console.log(collection);
 
-            if (collection.length == 0) {
+            if (!collection) {
                 collection = await bookRepository.addCollection({ collection_name })
             }
 
-            collection_id = collection[0].id;
+            collection_id = collection.id;
             await bookRepository.incrementVolumeCountCollection({ collection_id });
         }
 
@@ -69,7 +68,7 @@ class Booksservices {
 
         return {
             livros: books.rows,
-            coleção: collection.rows
+            coleção: collection
         }
     }
 

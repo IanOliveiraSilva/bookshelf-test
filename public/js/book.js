@@ -13,6 +13,12 @@ document.addEventListener('DOMContentLoaded', async () => {
   };
 
   document.getElementById("add-favorite-button").addEventListener('click', async () => {
+    let isCollection = confirm("Este livro faz parte de uma coleção?");
+    let collection_name = null;
+
+    if (isCollection) {
+      collection_name = prompt("Por favor, insira o nome da coleção:");
+    }
 
     const response = await fetch('/api/book/api', {
       method: 'POST',
@@ -28,11 +34,17 @@ document.addEventListener('DOMContentLoaded', async () => {
         publisher: bookData.publisher,
         genre: bookData.genre,
         pagecount: bookData.pagecount,
-        lang: bookData.lang
+        lang: bookData.lang,
+        collection_name: collection_name
       })
     });
 
     const responseData = await response.json();
+    
+    if (response.ok) {
+      alert('Livro adicionado com sucesso!');
+      window.location.href = `/bookshelf`;
+    }
 
     if (responseData.message === 'Este livro já está no banco de dados.') {
       alert('Este livro já está na sua estante.');

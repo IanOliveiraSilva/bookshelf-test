@@ -4,7 +4,7 @@ class BooksRepository {
 
   async getCollectionByName({ collection_name }) {
     const collection = await db.query(`SELECT * FROM collection WHERE name = $1`, [collection_name])
-    return collection.rows;
+    return collection.rows[0];
   }
 
   async addCollection({ collection_name }) {
@@ -100,17 +100,6 @@ class BooksRepository {
     return books
   }
 
-  async getCollectionByName({ collection_name }){
-    const collection = await db.query(
-      `SELECT collection.name, collection.id, collection.volumecount
-      FROM collection
-      WHERE collection.name = $1
-      `,
-      [collection_name]
-    )
-
-    return collection
-  }
 
   async getAddedBookById({ id }) {
     const book = await db.query(
