@@ -1,6 +1,24 @@
 const db = require("../config/db");
 
 class BooksRepository {
+
+  async getCollectionByName({ collection_name }) {
+    const collection = await db.query(`SELECT * FROM collection WHERE name = $1`, [collection_name])
+    return collection.rows;
+  }
+
+  async addCollection({ collection_name }) {
+    const { rows: [collection], } = await db.query(`INSERT INTO collection(name) VALUES($1) RETURNING *`, [collection_name])
+    return collection;
+  }
+
+  async getExistingBook({ name, author, publisher }) {
+    const { rows: [existingBook], } = await db.query(
+      `SELECT * FROM books WHERE name = $1 AND author = $2 AND publisher = $3`,
+      [name, author, publisher]
+    );
+  }
+
   async addBook({
     name,
     description,
@@ -10,7 +28,8 @@ class BooksRepository {
     image,
     genre,
     pagecount,
-    lang
+    lang,
+    collection_id
   }) {
     const { rows: [existingBook], } = await db.query(
       `SELECT * FROM books WHERE name = $1 AND author = $2 AND publisher = $3`,
@@ -22,8 +41,8 @@ class BooksRepository {
     }
 
     const { rows: [book], } = await db.query(
-      `INSERT INTO books( name, description, author, year, publisher, image, genre, pagecount, lang) 
-        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) 
+      `INSERT INTO books( name, description, author, year, publisher, image, genre, pagecount, lang, collection_id) 
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) 
         RETURNING *`,
       [
         name,
@@ -34,7 +53,8 @@ class BooksRepository {
         image,
         genre,
         pagecount,
-        lang
+        lang,
+        collection_id
       ]
     );
 

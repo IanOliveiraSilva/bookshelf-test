@@ -3,8 +3,8 @@ const bookRepository = new BooksRepository();
 
 const axios = require('axios');
 
-
 class Booksservices {
+ 
     async addBook({
         name,
         description,
@@ -14,8 +14,22 @@ class Booksservices {
         image,
         genre,
         pagecount,
-        lang
+        lang,
+        collection_name
     }) {
+        let collection_id = null;
+
+        if (collection_name) {
+            let collection = await bookRepository.getCollectionByName({ collection_name })
+            console.log(collection);
+
+            if (collection.length == 0) {
+                collection = await bookRepository.addCollection({ collection_name })
+            }
+
+            collection_id = collection[0].id;
+        }
+
         const book = await bookRepository.addBook({
             name,
             description,
@@ -25,10 +39,11 @@ class Booksservices {
             image,
             genre,
             pagecount,
-            lang
+            lang,
+            collection_id
         });
-        return book
 
+        return book
     }
 
     async getBooks({ sort, page, pageSize }) {
