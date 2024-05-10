@@ -53,6 +53,9 @@ class Booksservices {
         author,
         year,
         publisher,
+        genre,
+        pagecount,
+        lang,
         id
     }) {
 
@@ -64,9 +67,12 @@ class Booksservices {
             author: author !== undefined ? author : book.rows[0].author,
             year: year !== undefined ? year : book.rows[0].year,
             publisher: publisher !== undefined ? publisher : book.rows[0].publisher,
+            genre: genre !== undefined ? genre : book.rows[0].genre,
+            pagecount: pagecount !== undefined ? pagecount : book.rows[0].pagecount,
+            lang: lang !== undefined ? lang : book.rows[0].lang,
         };
 
-
+        console.log(updatedBook)
         const newBook = await bookRepository.updateBook(updatedBook, id);
 
         return {

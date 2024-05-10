@@ -69,7 +69,6 @@ class BooksRepository {
     return books.rows;
   }
 
-
   async getAddedBookById({ id }) {
     const book = await db.query(
       `SELECT *
@@ -87,8 +86,11 @@ class BooksRepository {
         description = $2, 
         author = $3, 
         year = $4,
-        publisher = $5
-        WHERE id = $6 
+        publisher = $5,
+        genre = $6,
+        pagecount = $7,
+        lang = $8
+        WHERE id = $9 
        RETURNING *`,
       [
         updatedBook.name,
@@ -96,6 +98,9 @@ class BooksRepository {
         updatedBook.author,
         updatedBook.year,
         updatedBook.publisher,
+        updatedBook.genre,
+        updatedBook.pagecount,
+        updatedBook.lang,
         id
       ]
     );

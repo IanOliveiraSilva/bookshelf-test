@@ -7,6 +7,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     const authorElement = document.getElementById('author');
     const publisherElement = document.getElementById('publisher');
     const yearElement = document.getElementById('year');
+    const genreElement = document.getElementById('genre');
+    const pagecountElement = document.getElementById('pagecount');
+    const langElement = document.getElementById('lang');
 
     const getBookResponse = await fetch(`/api/addedBook/${encodeURIComponent(id)}`, {
         method: 'GET'
@@ -19,6 +22,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     authorElement.value = bookData[0].author;
     publisherElement.value = bookData[0].publisher;
     yearElement.value = bookData[0].year;
+    genreElement.value = bookData[0].genre;
+    pagecountElement.value = bookData[0].pagecount;
+    langElement.value = bookData[0].lang;
 
     const updateProfileForm = document.getElementById('add-book-form');
     updateProfileForm.addEventListener('submit', async (event) => {
@@ -34,7 +40,10 @@ document.addEventListener('DOMContentLoaded', async () => {
                 description: descriptionElement.value,
                 author: authorElement.value,
                 publisher: publisherElement.value,
-                year: yearElement.value
+                year: yearElement.value,
+                genre: genreElement.value,
+                pagecount: pagecountElement.value,
+                lang: langElement.value
             })
         });
 

@@ -127,7 +127,10 @@ exports.updateBook = async (req, res, next) => {
       description,
       author,
       year,
-      publisher
+      publisher,
+      genre,
+      pagecount,
+      lang
     } = req.body;
 
     const id = req.params.id;
@@ -138,6 +141,9 @@ exports.updateBook = async (req, res, next) => {
       author,
       year,
       publisher,
+      genre,
+      pagecount,
+      lang,
       id
     });
 
