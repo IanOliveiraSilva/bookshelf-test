@@ -121,8 +121,13 @@ class BooksRepository {
 
   async getAddedBookById({ id }) {
     const book = await db.query(
-      `SELECT *
-       FROM books WHERE id = $1`,
+      `
+      SELECT books.*, collection.name as collection_name
+      FROM books 
+      JOIN collection
+      ON books.collection_id = collection.id
+      WHERE books.id = $1
+      `,
       [id]
     );
 
