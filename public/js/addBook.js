@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', async () => {
     const submitButton = document.getElementById('submit-button') 
-    
+
     document.getElementById('add-book-form').addEventListener('submit', async (event) => {
         event.preventDefault();
     
@@ -44,3 +44,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
 
+    function showCollectionNameField() {
+        document.getElementById('collection_name_field').style.display = 'block';
+      }
+      
+      function hideCollectionNameField() {
+        document.getElementById('collection_name_field').style.display = 'none';
+      }

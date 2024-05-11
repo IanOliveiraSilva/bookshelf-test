@@ -7,6 +7,18 @@ class BooksRepository {
     return collection.rows[0];
   }
 
+  async getCollectionByCollectionId({ collection_id }) {
+    const collection = await db.query(`
+    SELECT collection.name 
+    from collection 
+    INNER JOIN books 
+    ON collection.id = books.collection_id
+    WHERE books.collection_id = $1`,
+      [collection_id])
+
+    return collection.rows[0];
+  }
+
   async addCollection({ collection_name }) {
     const { rows: [collection], } = await db.query(`INSERT INTO collection(name, volumecount) VALUES($1, $2) RETURNING *`, [collection_name, 0])
     return collection;
@@ -68,25 +80,31 @@ class BooksRepository {
       year_asc: 'year ASC',
       year_desc: 'year DESC',
       title_desc: 'name ASC',
-      title_asc: 'name DESC'
+      title_asc: 'name DESC',
+      collection: 'collection_id DESC'
     };
 
     const orderBy = sortOptions[sort] || 'year ASC';
     const offset = (page - 1) * pageSize;
 
     const books = await db.query(
-      `SELECT id, image, name, year
-       FROM books
-       GROUP BY id
-       ORDER BY ${orderBy}
-       LIMIT ${pageSize} OFFSET ${offset}`
+      `
+      SELECT books.id, books.image, books.name, books.year, books.collection_id,
+      collection.name as collection_name
+      FROM books
+      LEFT JOIN collection
+      ON books.collection_id = collection.id
+      GROUP BY collection.name, books.id
+      ORDER BY ${orderBy}
+      LIMIT ${pageSize} OFFSET ${offset}
+      `
     );
 
 
     return books.rows;
   }
-  
-  async getBooksByCollectionName({ collection_name }){
+
+  async getBooksByCollectionName({ collection_name }) {
     const books = await db.query(
       `SELECT books.name as title, books.id as book_id, books.author
       FROM books

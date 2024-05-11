@@ -122,6 +122,18 @@ exports.getAddedBookById = async (req, res, next) => {
   }
 }
 
+exports.getCollectionByCollectionId = async (req, res, next) => {
+  try {
+    const collection_id = req.params.id;
+
+    const response = await bookservice.getCollectionByCollectionId({ collection_id })
+
+    res.status(200).json(response)
+  } catch (error) {
+    next(error)
+  }
+}
+
 exports.getBooksByCollectionName = async (req, res, next) => {
   try {
     const collection_name = req.params.collection_name;
@@ -162,7 +174,7 @@ exports.updateBook = async (req, res, next) => {
     });
 
 
-    return res.status(200).json(response);
+    return res.status(201).json(response);
   } catch (error) {
     next(error);
   }
@@ -175,7 +187,7 @@ exports.deleteBook = async (req, res, next) => {
     const response = await bookservice.deleteBook({ id });
 
 
-    return res.status(200).json(response);
+    return res.status(203).json(response);
   } catch (error) {
     next(error);
   }

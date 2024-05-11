@@ -3,8 +3,6 @@
     margin-bottom: 20px;
     color: aqua;
 }
-
-
 .book-item {
     position: relative;
     cursor: pointer;
@@ -49,6 +47,7 @@ hr {
     font-size: 14px;
     margin-bottom: 3px;
 }
+
 
 .pagination {
     display: flex;

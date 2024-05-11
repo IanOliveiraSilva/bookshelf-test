@@ -61,6 +61,12 @@ class Booksservices {
         return books.rows
     }
 
+    async getCollectionByCollectionId({ collection_id }) {
+        const collection = await bookRepository.getCollectionByCollectionId({ collection_id });
+
+        return collection
+    }
+
     async getBooksByCollectionName({ collection_name }) {
         const books = await bookRepository.getBooksByCollectionName({ collection_name });
 
@@ -108,11 +114,6 @@ class Booksservices {
 
     async deleteBook({ id }) {
         const book = await bookRepository.deleteBook({ id });
-
-
-        return {
-            message: "Livro deletado com sucesso"
-        }
     }
 
     // GOOGLE API CALLS

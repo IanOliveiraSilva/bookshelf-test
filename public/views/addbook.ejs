@@ -41,8 +41,21 @@
                         <option value="ZH-CN">Chinês</option>
                     </select><br>
 
-                    <label for="collection_name">Nome da coleção (Caso tenha):</label><br>
-                    <input type="text" id="collection_name" name="collection_name" required><br>
+                    <label>É uma coleção?</label><br>
+                    <div class="radio-group">
+                        <input type="radio" id="yes" name="is_collection" value="yes"
+                            onclick="showCollectionNameField()">
+                        <label for="yes">Sim</label>
+                        <input type="radio" id="no" name="is_collection" value="no" onclick="hideCollectionNameField()"
+                            checked>
+                        <label for="no">Não</label>
+                    </div>
+
+                    <div id="collection_name_field" style="display: none;">
+                        <label for="collection_name">Nome da coleção:</label><br>
+                        <input type="text" id="collection_name" name="collection_name"><br>
+                    </div>
+
 
 
                     <label for="image"><i class="fa fa-upload"></i></label><br>
