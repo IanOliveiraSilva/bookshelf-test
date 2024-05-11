@@ -187,7 +187,7 @@ exports.deleteBook = async (req, res, next) => {
     const response = await bookservice.deleteBook({ id });
 
 
-    return res.status(203).json(response);
+    return res.status(204).json(response);
   } catch (error) {
     next(error);
   }
