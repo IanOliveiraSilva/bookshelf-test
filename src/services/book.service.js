@@ -160,6 +160,11 @@ class Booksservices {
                     publishedYear: volumeInfo.publishedDate ? volumeInfo.publishedDate.substring(0, 4) : "N/A",
                     id: item.id,
                     image: volumeInfo.imageLinks?.thumbnail,
+                    author: volumeInfo.authors,
+                    pageCount: volumeInfo.pageCount,
+                    description: volumeInfo.description,
+                    genre: volumeInfo.categories,
+                    lang: volumeInfo.language,
                 };
             });
 

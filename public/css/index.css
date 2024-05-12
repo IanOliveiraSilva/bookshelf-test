@@ -1,46 +1,86 @@
-
-.add-book-container {
-    background-color: rgba(0, 0, 0, 0.5);
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    padding: 30px;
-    margin-top: 200px;
-}
 .form-title {
     font-size: 2rem;
     color: #ffffff;
     text-align: center;
     margin-bottom: 30px;
 }
+
 .input-group {
     margin-bottom: 20px;
 }
+
 .form-control {
     border-radius: 5px;
-}
-.btn-primary {
-    border-radius: 5px;
-    background-color: #128c7e;
-    color: #ffffff;
-}
-.btn-primary:hover {
-    background-color: #0c534b;
-    color: #128c7e;
 }
 
 .poster {
     border: 2px solid #128c7e;
     border-radius: 5px;
-    width: 150px;
-    height: 200px;
+    width: 100px;
+    height: 150px;
+    margin-top: 0px;
+    margin-right: 20px;
+    object-fit: cover;
 }
-.poster:hover{
+
+#search-results {
+    width: 100%;
+}
+
+.input-group {
+    margin-bottom: 0;
+}
+
+.list-group-item {
+    font-size: 1rem;
+    height: 200px;
+    background-color: #0a4b43;
+    color:#18beab;
+    box-shadow: 0 0 1px #052420;
+    transition: transform 0.3s ease-in-out;
+}
+
+.list-group-item:hover{
     transform: scale(1.1);
 }
 
-.book-title {
-    width: 150px;
-    white-space: normal;
-    word-wrap: break-word;
-    color: #1ae9d1;
+
+.list-group {
+    height: 50px;
+    width: 65%;
+    margin-left: 34px;
+    margin-top: -59px;
+}
+
+
+input[type="text"] {
+    background-color: #0a4b43;
+    color: #18beab;
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: none;
+    border-radius: 5px;
+}
+
+hr {
+    height: 2px;
+    background-color: #128c7e;
+    margin: 20px 0;
+}
+
+.add-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    color: #ffffff;
+    background-color: #18beab;
+    border: 2px solid #ffffff;
+    box-shadow: 1px 1px 4px #052420;
+    border-radius: 50%;
+    font-size: 20px;
+    margin-left: 65px;
+    cursor: pointer;
 }

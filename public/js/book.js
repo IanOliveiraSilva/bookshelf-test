@@ -50,5 +50,4 @@ document.addEventListener('DOMContentLoaded', async () => {
       alert('Este livro já está na sua estante.');
     }
   });
-
 });

@@ -81,7 +81,9 @@ class BooksRepository {
       year_desc: 'year DESC',
       title_desc: 'name ASC',
       title_asc: 'name DESC',
-      collection: 'collection_id DESC'
+      collection: 'collection_id DESC',
+      created_at_asc: 'created_at ASC',
+      created_at_desc: 'created_at DESC'
     };
 
     const orderBy = sortOptions[sort] || 'year ASC';
@@ -117,7 +119,6 @@ class BooksRepository {
 
     return books
   }
-
 
   async getAddedBookById({ id }) {
     const book = await db.query(
@@ -180,8 +181,6 @@ class BooksRepository {
 
     return bookCount.rows;
   }
-
-
 }
 
 module.exports = { BooksRepository };
