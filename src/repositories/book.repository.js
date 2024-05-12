@@ -125,7 +125,7 @@ class BooksRepository {
       `
       SELECT books.*, collection.name as collection_name
       FROM books 
-      JOIN collection
+      LEFT JOIN collection
       ON books.collection_id = collection.id
       WHERE books.id = $1
       `,

@@ -160,10 +160,10 @@ class Booksservices {
                     publishedYear: volumeInfo.publishedDate ? volumeInfo.publishedDate.substring(0, 4) : "N/A",
                     id: item.id,
                     image: volumeInfo.imageLinks?.thumbnail,
-                    author: volumeInfo.authors,
+                    author: Array.isArray(volumeInfo.authors) ? volumeInfo.authors[0] : volumeInfo.authors,
                     pageCount: volumeInfo.pageCount,
                     description: volumeInfo.description,
-                    genre: volumeInfo.categories,
+                    genre: Array.isArray(volumeInfo.categories) ? volumeInfo.categories[0] : volumeInfo.categories,
                     lang: volumeInfo.language,
                 };
             });

@@ -63,7 +63,7 @@ async function createBookData(book) {
 
 function getCollectionName() {
     const isCollection = confirm("Este livro faz parte de uma coleção?");
-    return isCollection ? prompt("Por favor, insira o nome da coleção:") : null;
+    return isCollection ? prompt("Por favor, insira o nome da coleção:").toLowerCase() : null;
 }
 
 function createBookDataObject(book, collectionName) {
@@ -75,8 +75,8 @@ function createBookDataObject(book, collectionName) {
         image: book.image,
         publisher: book.publisher,
         genre: book.genre,
-        pagecount: book.pagecount,
-        lang: book.language,
+        pagecount: book.pageCount,
+        lang: book.lang,
         collection_name: collectionName
     };
 }
@@ -97,7 +97,7 @@ async function handleResponse(response) {
         window.location.href = `/bookshelf`;
     } else {
         const responseData = await response.json();
-        if (responseData.message === 'Este livro já está no banco de dados.') {
+        if (responseData.message === 'Esse livro já está no banco de dados') {
             alert('Este livro já está na sua estante.');
         }
     }
