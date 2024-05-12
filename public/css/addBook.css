@@ -68,11 +68,13 @@ small{
   }
   
   .radio-group label {
-    font-size: 1.2em;
+    font-size: 1em;
     color: #18beab;
   }
   
   .radio-group input {
-    transform: scale(1.5);
+    color: #18beab;
+    background-color: #0a4b43;
+    transform: scale(1.2);
     margin-right: 10px;
   }

@@ -18,8 +18,9 @@ function createBookElement(book) {
     li.setAttribute('data-book-id', book.id);
     if (book.image) {
         li.innerHTML = `
-            <li class="book-item p-2">
-                <img src="${book.image}" alt="${book.title}" class="book-image poster img-fluid">
+            <li class="book-item p-2 book-title">
+                <img src="${book.image}" alt="${book.title}" class="book-image poster img-fluid">'
+                <p>${book.title}(${book.publishedYear})</p>
             </li>
         `;
     }

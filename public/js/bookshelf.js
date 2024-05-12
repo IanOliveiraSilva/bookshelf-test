@@ -37,5 +37,28 @@ document.addEventListener('DOMContentLoaded', async () => {
             location.reload();
         });
     });
+
+    
 });
 
+function removeAccents(str) {
+    return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+}
+
+function filterBooks() {
+    var input, filter, ul, li, a, i, txtValue;
+    input = document.getElementById('search');
+    filter = removeAccents(input.value.toUpperCase());
+    ul = document.getElementById("book-list");
+    li = ul.getElementsByTagName('li');
+
+    for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByTagName("a")[0];
+        txtValue = removeAccents((a.textContent || a.innerText).toUpperCase());
+        if (txtValue.indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+        }
+    }
+}

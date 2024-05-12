@@ -38,3 +38,9 @@
     transform: scale(1.1);
 }
 
+.book-title {
+    width: 150px;
+    white-space: normal;
+    word-wrap: break-word;
+    color: #1ae9d1;
+}

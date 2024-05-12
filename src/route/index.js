@@ -42,7 +42,6 @@ router.get('/bookshelf', async (req, res) => {
 
   const url = `http://localhost:3333/api/book/?pageSize=${pageSize}&page=${page}&sort=${sort}`;
  
-  
   const response = await fetch(url);
   const data = await response.json();
 
