@@ -108,7 +108,7 @@ class BooksRepository {
 
   async getBooksByCollectionName({ collection_name }) {
     const books = await db.query(
-      `SELECT books.name as title, books.id as book_id, books.author
+      `SELECT books.name as title, books.image, books.year, books.id as book_id, books.author
       FROM books
       INNER JOIN collection 
       ON books.collection_id = collection.id

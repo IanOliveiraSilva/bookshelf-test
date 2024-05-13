@@ -77,7 +77,8 @@ function createBookDataObject(book, collectionName) {
         genre: book.genre,
         pagecount: book.pageCount,
         lang: book.lang,
-        collection_name: collectionName
+        collection_name: collectionName,
+        googleBookId: book.id
     };
 }
 

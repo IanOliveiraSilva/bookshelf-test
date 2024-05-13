@@ -14,6 +14,8 @@ router.get('/addBook', (req, res) => {
   res.render('addbook');
 });
 
+
+
 router.get('/book/:id', async (req, res) => {
   const id = req.params.id;
   const response = await fetch(`http://localhost:3333/api/book/id/${id}`);
@@ -32,6 +34,15 @@ router.get('/addedbook/:id', async (req, res) => {
   res.render('addedBook', { bookData: data[0] });
 });
 
+router.get('/collection/:collectioname', async (req, res) => {
+  const collection = req.params.collectioname;
+  const response = await fetch(`http://localhost:3333/api/books/${collection}`);
+  
+  const data = await response.json();
+
+  res.render('collection', { books: data});
+})
+
 router.get('/updateBook/:id', async (req, res) => {
   res.render('updateBook');
 });
@@ -47,8 +58,6 @@ router.get('/bookshelf', async (req, res) => {
   const data = await response.json();
 
   const quantidadeLivros = data.Quantidade[0].count || 0;
-  console.log(data.Livros[0])
-
   let totalPages = Math.ceil(quantidadeLivros / pageSize);
 
   res.render('bookshelf', { books: data, page: page, totalPages: totalPages })

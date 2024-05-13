@@ -1,0 +1,54 @@
+<%- include('partials/header', {pageTitle: 'Virtual Library' }) %>
+
+    <link rel="stylesheet" href="../css/bookshelf.css">
+    <link rel="stylesheet" href="../css/sortOptions.css">
+
+    <div class="container py-5">
+        <p class="book-count">
+            <%= books.coleção.volumecount %>
+        </p>
+
+        <div class="row justify-content-center mt-5">
+            <input type="text" id="search" placeholder="Digite para buscar..." onkeyup="filterBooks()">
+            <ul class="book-list list-unstyled d-flex flex-wrap" id="book-list">
+                <% books.livros.forEach((book, index)=> { %>
+                    <li class="book-item p-2 collection-book" style="margin: 10px;" id="book-<%= index %>">
+                        <div class="collection-border">
+                            <a style="text-decoration: none;" href="/addedBook/<%= book.book_id %>">
+                                <img class="book-image poster img-fluid" src="<%= book.image %>"
+                                    alt="Livro <%= book.id %>">
+                                <hr>
+                                <div class="book-title">
+                                    <p>
+                                        <%= book.title %> (<%= book.year %>)
+                                    </p>
+
+                                    <span
+                                        style="background-color: #1ae9d1; color: #101b1d;; text-transform: uppercase; font-weight: 100;"
+                                        class="badge badge-primary">
+                                        <%= books.coleção.name %>
+                                    </span>
+                                </div>
+                            </a>
+                        </div>
+                    </li>
+                    <% }); %>
+            </ul>
+        
+        </div>
+        <a href="/" class="back-link text-center">
+            <i class="fa-solid fa-house" style="margin-left: 50px; color: #18beab; font-size: 30px;">
+            </i>
+        </a>
+
+        <a href="/bookshelf" class="back-link text-center">
+            <i class="fa-solid fa-book" style="margin-left: 50px; color: #18beab; font-size: 30px;">
+            </i>
+        </a>
+    </div>
+
+    
+    <script src="../js/bookshelf.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
