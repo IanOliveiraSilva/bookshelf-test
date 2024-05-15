@@ -75,13 +75,13 @@ class BooksRepository {
 
   async getBooks({ sort, page, pageSize }) {
     const sortOptions = {
-      author: 'author DESC',
+      author: 'author ASC',
       publisher: 'publisher ASC',
       year_asc: 'year ASC',
       year_desc: 'year DESC',
       title_desc: 'name ASC',
       title_asc: 'name DESC',
-      collection: 'collection_id DESC',
+      collection: 'collection_id ASC, name ASC',
       created_at_asc: 'created_at ASC',
       created_at_desc: 'created_at DESC'
     };
@@ -101,8 +101,6 @@ class BooksRepository {
       LIMIT ${pageSize} OFFSET ${offset}
       `
     );
-
-
     return books.rows;
   }
 
