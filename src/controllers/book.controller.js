@@ -20,7 +20,7 @@ exports.upload = upload;
 
 const FILE_UPLOAD_ERROR = 'File upload error';
 const BOOK_EXISTS_ERROR = 'Esse livro já está no banco de dados';
-const SUCCESS_STATUS = 200;
+const SUCCESS_STATUS = 201;
 const ERROR_STATUS = 400;
 
 async function uploadFile(req) {
@@ -92,7 +92,7 @@ exports.addBookFromAPI = async (req, res, next) => {
       collection_name
     });
 
-    res.status(200).json(response);
+    res.status(201).json(response);
 
   } catch (error) {
     next(error);
@@ -174,7 +174,7 @@ exports.updateBook = async (req, res, next) => {
     });
 
 
-    return res.status(201).json(response);
+    return res.status(200).json(response);
   } catch (error) {
     next(error);
   }

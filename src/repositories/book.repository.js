@@ -91,7 +91,7 @@ class BooksRepository {
 
     const books = await db.query(
       `
-      SELECT books.id, books.image, books.name, books.year, books.collection_id,
+      SELECT books.id, books.publisher, books.author, books.image, books.name, books.year, books.collection_id,
       collection.name as collection_name
       FROM books
       LEFT JOIN collection
