@@ -13,10 +13,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   document.getElementById("collection-name").addEventListener('input', async () => {
     let collection_name = document.getElementById("collection-name").value;
-  
+
     const response = await fetch(`/api/collection/name/${collection_name}`);
     const collections = await response.json();
-  
+
     let select = document.getElementById('collection-list');
     if (!select) {
       select = document.createElement('select');
@@ -27,28 +27,28 @@ document.addEventListener('DOMContentLoaded', async () => {
     while (select.firstChild) {
       select.removeChild(select.firstChild);
     }
-  
+
     select.size = collections.length > 5 ? 5 : collections.length;
-  
+
     collections.forEach(collection => {
       let option = document.createElement('option');
       option.value = collection.name;
       option.text = collection.name;
       select.appendChild(option);
     });
-  
-    document.getElementById('collection-list').addEventListener('change', function() {
+
+    document.getElementById('collection-list').addEventListener('change', function () {
       document.getElementById('collection-name').value = this.options[this.selectedIndex].text;
     });
   });
-  
+
 
   document.getElementById("add-favorite-button").addEventListener('click', async () => {
     let modal = new bootstrap.Modal(document.getElementById('collectionModal'));
     modal.show();
 
     document.getElementById("saveButton").addEventListener('click', async () => {
-      let collection_id = document.getElementById("collection-list").value 
+      let collection_id = document.getElementById("collection-list").value
 
       const response = await fetch('/api/book/api', {
         method: 'POST',
@@ -72,12 +72,18 @@ document.addEventListener('DOMContentLoaded', async () => {
       const responseData = await response.json();
 
       if (response.ok) {
-        alert('Livro adicionado com sucesso!');
-        window.location.href = `/bookshelf`;
+        let successModal = new bootstrap.Modal(document.getElementById('successModal'));
+        successModal.show();
+    
+        // Adicione um ouvinte de evento ao botão "Fechar" do modal de sucesso
+        document.getElementById("closeSuccessButton").addEventListener('click', function() {
+          window.location.href = `/bookshelf`;
+        });
       }
-
-      if (responseData.message === 'Este livro já está no banco de dados.') {
-        alert('Este livro já está na sua estante.');
+    
+      if (responseData.message === 'Esse livro já está no banco de dados') {
+        let errorModal = new bootstrap.Modal(document.getElementById('errorModal'));
+        errorModal.show();
       }
     });
   });
