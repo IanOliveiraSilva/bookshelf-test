@@ -31,6 +31,11 @@ router.get(
     bookController.getAddedBookById
 )
 
+router.get(
+    "/collection/name/:collection_name",
+    bookController.getCollectionByName
+)
+
 
 router.get(
     "/collection/:id",

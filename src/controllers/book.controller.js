@@ -122,6 +122,18 @@ exports.getAddedBookById = async (req, res, next) => {
   }
 }
 
+exports.getCollectionByName = async (req, res, next) => {
+  try {
+    const collection_name = req.params.collection_name;
+
+    const response = await bookservice.getCollectionByName({ collection_name })
+
+    res.status(200).json(response)
+  } catch (error) {
+    next(error)
+  }
+}
+
 exports.getCollectionByCollectionId = async (req, res, next) => {
   try {
     const collection_id = req.params.id;

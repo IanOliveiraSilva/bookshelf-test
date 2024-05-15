@@ -61,6 +61,11 @@ class Booksservices {
         return books.rows
     }
 
+    async getCollectionByName({ collection_name }) {
+        const collections = await bookRepository.getCollectionsByName({ collection_name });
+
+        return collections
+    }
 
     async getCollectionByCollectionId({ collection_id }) {
         const collection = await bookRepository.getCollectionByCollectionId({ collection_id });

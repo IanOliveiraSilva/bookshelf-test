@@ -134,3 +134,16 @@ a{
 .badge:hover{
     transform: scale(1.1);
 }
+
+input[type="text"],
+input[type="file"],
+input[type="number"],
+select {
+    background-color: #0a4b43;
+    color: #18beab;
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: none;
+    border-radius: 5px;
+}

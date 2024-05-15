@@ -31,6 +31,7 @@
                                 </button>
                             </div>
 
+                            <% if (bookData.collection_name) { %>
                             <a href="/collection/<%= bookData.collection_name %>">
                                 <span
                                     style="background-color: #1ae9d1; color: #101b1d;; text-transform: uppercase; font-weight: 100;"
@@ -38,6 +39,7 @@
                                     <%= bookData.collection_name %>
                                 </span>
                             </a>
+                            <% } %>
                     </div>
                     
                     <div class="col-md-8">

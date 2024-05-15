@@ -7,6 +7,11 @@ class BooksRepository {
     return collection.rows[0];
   }
 
+  async getCollectionsByName({ collection_name }) {
+    const collections = await db.query(`SELECT * FROM collection WHERE name ILIKE $1`, [`%${collection_name}%`])
+    return collections.rows;
+  }
+
   async getCollectionByCollectionId({ collection_id }) {
     const collection = await db.query(`
     SELECT collection.name 
@@ -111,6 +116,7 @@ class BooksRepository {
       INNER JOIN collection 
       ON books.collection_id = collection.id
       WHERE collection.name = $1
+      ORDER BY books.name ASC
       `,
       [collection_name]
     )
@@ -172,6 +178,7 @@ class BooksRepository {
 
     return rows;
   }
+  
 
   async getBooksCount({ }) {
     const bookCount = await db.query(`SELECT COUNT(*)
