@@ -108,7 +108,7 @@ class Booksservices {
         const newBook = await bookRepository.updateBook(updatedBook, id);
 
         return {
-            message: "Livro atulizado com sucesso",
+            message: "Livro atualizado com sucesso",
             book: newBook
         }
     }
