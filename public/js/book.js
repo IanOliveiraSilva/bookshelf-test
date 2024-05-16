@@ -42,14 +42,15 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   });
 
-
   document.getElementById("add-favorite-button").addEventListener('click', async () => {
     let modal = new bootstrap.Modal(document.getElementById('collectionModal'));
     modal.show();
 
     document.getElementById("saveButton").addEventListener('click', async () => {
-      let collection_id = document.getElementById("collection-list").value
-
+      let collection_name_input = document.getElementById("collection-name").value;
+      let collection_list = document.getElementById("collection-list");
+      let collection_id = collection_list.options[collection_list.selectedIndex] ? collection_list.value : collection_name_input;
+    
       const response = await fetch('/api/book/api', {
         method: 'POST',
         headers: {
@@ -75,7 +76,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         let successModal = new bootstrap.Modal(document.getElementById('successModal'));
         successModal.show();
     
-        // Adicione um ouvinte de evento ao botão "Fechar" do modal de sucesso
         document.getElementById("closeSuccessButton").addEventListener('click', function() {
           window.location.href = `/bookshelf`;
         });
