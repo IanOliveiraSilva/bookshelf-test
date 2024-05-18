@@ -154,33 +154,44 @@ class Booksservices {
     }
 
     async getBooksByTitle({ title }) {
+        try {
+            const googleBooksResponse = await axios.get(`https://www.googleapis.com/books/v1/volumes`, { params: { q: title } });
 
-        const googleBooksResponse = await axios.get(`https://www.googleapis.com/books/v1/volumes`, { params: { q: title } });
+            if (googleBooksResponse.status === 200) {
+                const books = googleBooksResponse.data.items
+                    .filter(item => item.volumeInfo.imageLinks?.thumbnail)
+                    .map(item => {
+                        const volumeInfo = item.volumeInfo;
+                        return {
+                            title: volumeInfo.title,
+                            publisher: volumeInfo.publisher,
+                            publishedYear: volumeInfo.publishedDate ? volumeInfo.publishedDate.substring(0, 4) : "N/A",
+                            id: item.id,
+                            image: volumeInfo.imageLinks?.thumbnail,
+                            author: Array.isArray(volumeInfo.authors) ? volumeInfo.authors[0] : volumeInfo.authors,
+                            pageCount: volumeInfo.pageCount,
+                            description: volumeInfo.description,
+                            genre: Array.isArray(volumeInfo.categories) ? volumeInfo.categories[0] : volumeInfo.categories,
+                            lang: volumeInfo.language,
+                        };
+                    });
 
-        if (googleBooksResponse.status === 200) {
-            const books = googleBooksResponse.data.items.map(item => {
-                const volumeInfo = item.volumeInfo;
                 return {
-                    title: volumeInfo.title,
-                    publisher: volumeInfo.publisher,
-                    publishedYear: volumeInfo.publishedDate ? volumeInfo.publishedDate.substring(0, 4) : "N/A",
-                    id: item.id,
-                    image: volumeInfo.imageLinks?.thumbnail,
-                    author: Array.isArray(volumeInfo.authors) ? volumeInfo.authors[0] : volumeInfo.authors,
-                    pageCount: volumeInfo.pageCount,
-                    description: volumeInfo.description,
-                    genre: Array.isArray(volumeInfo.categories) ? volumeInfo.categories[0] : volumeInfo.categories,
-                    lang: volumeInfo.language,
+                    body: {
+                        books
+                    }
                 };
-            });
-
+            }
+        } catch (error) {
+            console.error("Error fetching books:", error);
             return {
                 body: {
-                    books
+                    books: []
                 }
             };
         }
     }
+
 }
 
 module.exports = { Booksservices };

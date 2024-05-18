@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         successModal.show();
     
         document.getElementById("closeSuccessButton").addEventListener('click', function() {
-          window.location.href = `/bookshelf`;
+          window.location.href = `/`;
         });
       }
     
