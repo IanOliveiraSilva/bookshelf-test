@@ -115,7 +115,15 @@ function renderBooks(books) {
     searchResults.appendChild(ul);
 }
 
-searchInput.addEventListener('input', async function (event) {
+function debounce(func, wait) {
+    let timeout;
+    return function(...args) {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func.apply(this, args), wait);
+    };
+}
+
+const handleSearchInput = debounce(async function(event) {
     const title = searchInput.value.trim();
     if (title.length > 0) {
         try {
@@ -132,9 +140,10 @@ searchInput.addEventListener('input', async function (event) {
     } else {
         searchResults.innerHTML = '';
     }
-});
+}, 300);
 
-// Inicialização
+searchInput.addEventListener('input', handleSearchInput);
+
 let token = localStorage.getItem('token');
 document.cookie = `token=${token}; path=/`;
 

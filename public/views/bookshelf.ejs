@@ -16,9 +16,7 @@
             <option value="author">Autor</option>
             <option value="collection">Coleção</option>
         </select>
-
         &emsp;
-
         <hr>
         <p class="book-count">
             <%= books.Quantidade[0].count %>
@@ -27,34 +25,34 @@
         <div class="row justify-content-center mt-5">
             <input type="text" id="search" placeholder="Digite para buscar..." onkeyup="filterBooks()">
             <ul class="book-list list-unstyled d-flex flex-wrap" id="book-list">
-                <% books.Livros.forEach((book, index)=> { %>
-                    <li class="book-item p-2 <%= book.collection_id ? 'collection-book' : '' %>" style="margin: 10px;"
-                        id="book-<%= index %>">
-                        <div class="<%= book.collection_id ? 'collection-border' : '' %>">
+                <% books.livros.forEach((book, index)=> { %>
+                    <li class="book-item p-2 collection-book" style="margin: 10px;" id="book-<%= index %>">
+                        <div class="collection-border">
                             <a style="text-decoration: none;" href="/addedBook/<%= book.id %>">
-                                <img class="book-image img-fluid" src="<%= book.image %>" alt="Livro <%= book.id %>">
+                                <img class="book-image poster img-fluid" src="<%= book.image %>"
+                                    alt="Livro <%= book.id %>">
                                 <hr>
-                                <div >
+                                <div>
                                     <p class="book-title">
-                                        <%= book.name %> (<%= book.year %>)
+                                        <%= book.title %> <% if (book.year) { %> (<%= book.year %>) <% } %>
                                     </p>
-                                    <% if (book.collection_id) { %>
-                                        <a href="/collection/<%= book.collection_name %>">
-                                            <span
-                                                style="background-color: #1ae9d1; color: #101b1d;; text-transform: uppercase; font-weight: 100;"
-                                                class="badge badge-primary">
-                                                <%= book.collection_name %>
-                                            </span>
-                                        </a>
-                                        <% } %>
                                 </div>
                             </a>
+                            <% if (book.collection_id) { %>
+                                <a href="/collection/<%= book.collection_name %>">
+                                    <span
+                                        style="background-color: #1ae9d1; color: #101b1d;; text-transform: uppercase; font-weight: 100;"
+                                        class="badge badge-primary">
+                                        <%= book.collection_name %>
+                                    </span>
+                                </a>
+                                <% } %>
+
                         </div>
                     </li>
                     <% }); %>
             </ul>
         </div>
-
 
         <ul class="pagination justify-content-center">
             <% for(let i=1; i <=totalPages; i++) { %>
@@ -66,9 +64,6 @@
                 <% } %>
         </ul>
     </div>
-
-
-
 
     <script src="../js/bookshelf.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>

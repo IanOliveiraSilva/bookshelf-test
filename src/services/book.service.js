@@ -50,7 +50,7 @@ class Booksservices {
         const bookCount = await bookRepository.getBooksCount({});
 
         return {
-            Livros: books,
+            livros: books,
             Quantidade: bookCount
         }
     }

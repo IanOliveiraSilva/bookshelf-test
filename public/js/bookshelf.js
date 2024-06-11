@@ -6,8 +6,7 @@ $(function () {
 document.addEventListener('DOMContentLoaded', async () => {
     let params = new URLSearchParams(window.location.search);
     let page = parseInt(params.get('page')) || 1;
-
-
+    
     const sort = document.getElementById("sortOptions");
 
     const savedSort = localStorage.getItem('sort');
@@ -37,8 +36,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             location.reload();
         });
     });
-
-    
 });
 
 function removeAccents(str) {

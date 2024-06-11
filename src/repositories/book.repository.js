@@ -84,8 +84,8 @@ class BooksRepository {
       publisher: 'publisher ASC',
       year_asc: 'year ASC',
       year_desc: 'year DESC',
-      title_desc: 'name ASC',
-      title_asc: 'name DESC',
+      title_desc: 'title DESC',
+      title_asc: 'title ASC',
       collection: ' collection.name ASC, books.name ASC',
       created_at_asc: 'created_at ASC',
       created_at_desc: 'created_at DESC'
@@ -96,7 +96,7 @@ class BooksRepository {
 
     const books = await db.query(
       `
-      SELECT books.id, books.publisher, books.author, books.image, books.name, books.year, books.collection_id,
+      SELECT books.id, books.publisher, books.author, books.image, books.name as title, books.year, books.collection_id,
       collection.name as collection_name
       FROM books
       LEFT JOIN collection
