@@ -95,7 +95,7 @@ async function postBookData(bookData) {
 async function handleResponse(response) {
     if (response.ok) {
         alert('Livro adicionado com sucesso!');
-        window.location.href = `/bookshelf`;
+        window.location.href = `/`;
     } else {
         const responseData = await response.json();
         if (responseData.message === 'Esse livro já está no banco de dados') {
